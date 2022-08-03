@@ -156,6 +156,11 @@ function deleteContact(firstName, lastName){
         console.log("Contact Does Not Exist");
     }
 }
+function getCountOfContacts(count) {
+    count += 1;
+    return count;
+}
+
 
 try {
     addressBookArray.push(new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com"));
@@ -179,4 +184,5 @@ console.log(addressBookArray);
 
 console.log("\nAfter Deleting Contact");
 deleteContact("Riya", "Singh");
-console.log(addressBookArray);
+console.log(addressBookArray);console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
+
