@@ -182,6 +182,13 @@ function searchContactByState(state) {
 function viewContactsByState(state){
     return addressBookArray.filter((contact) => contact.state == state);
 }
+function getCountOfContactsByCity(city){
+    return addressBookArray.filter((contact) => contact.city == city).length;
+}
+
+function getCountOfContactsByState(state){
+    return addressBookArray.filter((contact) => contact.state == state).length;
+}
 
 
 let firstContact = new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com");
@@ -232,3 +239,6 @@ console.log(viewContactsByCity("Agra"));
 
 console.log("\nView Contacts By State : UttarPradesh\n" );
 console.log(viewContactsByState("UttarPradesh"));
+
+console.log("\nNumber of Contacts residing in City : Lucknow= " + getCountOfContactsByCity("Lucknow"))
+console.log("\nNumber of Contacts residing in State : UttarPradesh = " + getCountOfContactsByState("UttarPradesh"));
