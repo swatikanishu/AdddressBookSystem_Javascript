@@ -114,6 +114,8 @@ class Contact {
 }
 
 let addressBookArray = new Array();
+let contactsCityMap = new Map();
+let contactsStateMap = new Map();
 
 function contactExists(firstName, lastName) {
     return addressBookArray.some(contact => contact.firstName == firstName && contact.lastName == lastName);
@@ -168,20 +170,23 @@ function getCountOfContacts(count) {
     count += 1;
     return count;
 }
-function searchContactByCity(city) {
-    return addressBookArray.filter((contact) => contact.city == city);
-  }
+
+function searchContactByCity(firstName, city) {
+    return addressBookArray.filter((contact) => contact.city == city && contact.firstName == firstName);
+}
   
-function searchContactByState(state) {
-    return addressBookArray.filter((contact) => contact.state == state);
-  }
-  function viewContactsByCity(city){
+function searchContactByState(firstName, state) {
+    return addressBookArray.filter((contact) => contact.state == state && contact.firstName == firstName);
+}
+
+function viewContactsByCity(city){
     return addressBookArray.filter((contact) => contact.city == city);
 }
 
 function viewContactsByState(state){
     return addressBookArray.filter((contact) => contact.state == state);
 }
+
 function getCountOfContactsByCity(city){
     return addressBookArray.filter((contact) => contact.city == city).length;
 }
@@ -189,12 +194,26 @@ function getCountOfContactsByCity(city){
 function getCountOfContactsByState(state){
     return addressBookArray.filter((contact) => contact.state == state).length;
 }
+
 function sortAddressBookByName(){
     addressBookArray.sort((firstPerson, secondPerson) => (firstPerson.firstName).localeCompare(secondPerson.firstName));
     console.log(addressBookArray);
 }
-console.log("\nContacts In Alphabetical Order");
-sortAddressBookByName();
+
+function sortAddressBookByCity(){
+    addressBookArray.sort((firstPerson, secondPerson) => (firstPerson.city).localeCompare(secondPerson.city));
+    console.log(addressBookArray);
+}
+
+function sortAddressBookByState(){
+    addressBookArray.sort((firstPerson, secondPerson) => (firstPerson.state).localeCompare(secondPerson.state));
+    console.log(addressBookArray);
+}
+
+function sortAddressBookByZip(){
+    addressBookArray.sort((firstPerson, secondPerson) => (firstPerson.zip).localeCompare(secondPerson.zip));
+    console.log(addressBookArray);
+}
 
 
 let firstContact = new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com");
@@ -202,26 +221,26 @@ let secondContact = new Contact("Riya", "Singh", "#8ac910", "Delhi", "Delhi", "2
 let thirdContact = new Contact("Alka", "Singh", "#8105bc", "Dehradun", "Uttarakhand", "550 864", "91 9485768574", "alka@gmail.com");
 let fourthContact = new Contact("Meera", "Singh", "#8105bc", "Kolkata", "WestBengal", "550 864", "91 9465837465", "meera@gmail.com");
 
-
 try {
     addressBookArray.push(firstContact);
     addressBookArray.push(secondContact);
     addressBookArray.push(thirdContact);
     addressBookArray.push(fourthContact);
-} catch (e) {
+}
+ catch (e) {
     console.error(e);
 }
 
 console.log(addressBookArray);
 
 console.log("\nAfter Editing Contact");
-editContact("Swatika", "Singh", "city", "Agra");
+editContact("Swatika", "Singh", "city", "Lucknow");
 console.log(addressBookArray);
 
 console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
 
 console.log("\nAfter Deleting Contact");
-deleteContact("Riya", "Singh");
+deleteContact("Swatika", "Singh");
 console.log(addressBookArray);
 
 console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
@@ -233,18 +252,31 @@ try {
     console.error(e);
 }
 console.log(addressBookArray);
+
 console.log("\nSearch Swatika In City - Lucknow");
 console.log(searchContactByCity("Swatika", "Lucknow"));
 
-console.log("\nSearch Swatika In State - UttarPradesh");
+console.log("\nSearch Killua In State - UttarPradesh");
 console.log(searchContactByState("Swatika", "UttarPradesh"));
 
 
-console.log("\nView Contacts By City : Agra \n" );
-console.log(viewContactsByCity("Agra"));
+console.log("\nView Contacts By City : Lucknow \n" );
+console.log(viewContactsByCity("Lucknow"));
 
 console.log("\nView Contacts By State : UttarPradesh\n" );
 console.log(viewContactsByState("UttarPradesh"));
 
-console.log("\nNumber of Contacts residing in City : Lucknow= " + getCountOfContactsByCity("Lucknow"))
+console.log("\nNumber of Contacts residing in City : Lucknow = " + getCountOfContactsByCity("Lucknow"));
 console.log("\nNumber of Contacts residing in State : UttarPradesh = " + getCountOfContactsByState("UttarPradesh"));
+
+console.log("\nContacts In Alphabetical Order");
+sortAddressBookByName();
+
+console.log("\nContacts Sorted Using City");
+sortAddressBookByCity();
+
+console.log("\nContacts Sorted Using State");
+sortAddressBookByState();
+
+console.log("\nContacts Sorted Using Zip");
+sortAddressBookByZip();
