@@ -117,7 +117,15 @@ let addressBookArray = new Array();
 
 function contactExists(firstName, lastName) {
     return addressBookArray.some(contact => contact.firstName == firstName && contact.lastName == lastName);
+
 }
+function addContact(contact) {
+    if (!contactExists(contact.firstName, contact.lastName)) 
+        addressBookArray.push(contact);
+    else 
+        throw "Contact is Present in the Address Book";
+}
+
 
 function editContact(firstName, lastName, property, newValue) {
     if (contactExists(firstName, lastName)) {
@@ -175,6 +183,12 @@ try {
 } catch (e) {
     console.error(e);
 }
+try {
+    addressBookArray.push(firstContact);
+    addressBookArray.push(secondContact);
+} catch (e) {
+    console.error(e);
+}
 
 console.log(addressBookArray);
 
@@ -185,4 +199,10 @@ console.log(addressBookArray);
 console.log("\nAfter Deleting Contact");
 deleteContact("Riya", "Singh");
 console.log(addressBookArray);console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
-
+console.log("\nAdding Duplicate Contact");
+try {
+    addContact(secondContact);
+} catch (e) {
+    console.error(e);
+}
+console.log(addressBookArray);
