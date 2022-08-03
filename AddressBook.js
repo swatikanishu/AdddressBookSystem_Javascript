@@ -175,14 +175,26 @@ function searchContactByCity(city) {
 function searchContactByState(state) {
     return addressBookArray.filter((contact) => contact.state == state);
   }
+  function viewContactsByCity(city){
+    return addressBookArray.filter((contact) => contact.city == city);
+}
+
+function viewContactsByState(state){
+    return addressBookArray.filter((contact) => contact.state == state);
+}
 
 
 let firstContact = new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com");
 let secondContact = new Contact("Riya", "Singh", "#8ac910", "Delhi", "Delhi", "226011", "91 9457889993", "riya@gmail.com");
+let thirdContact = new Contact("Alka", "Singh", "#8105bc", "Dehradun", "Uttarakhand", "550 864", "91 9485768574", "alka@gmail.com");
+let fourthContact = new Contact("Meera", "Singh", "#8105bc", "Kolkata", "WestBengal", "550 864", "91 9465837465", "meera@gmail.com");
+
 
 try {
     addressBookArray.push(firstContact);
     addressBookArray.push(secondContact);
+    addressBookArray.push(thirdContact);
+    addressBookArray.push(fourthContact);
 } catch (e) {
     console.error(e);
 }
@@ -208,8 +220,15 @@ try {
     console.error(e);
 }
 console.log(addressBookArray);
-console.log("\nSearch Contact By City");
-console.log(searchContactByCity("Agra"));
+console.log("\nSearch Swatika In City - Lucknow");
+console.log(searchContactByCity("Swatika", "Lucknow"));
 
-console.log("\nSearch Contact By State");
-console.log(searchContactByState("UttarPradesh"));
+console.log("\nSearch Swatika In State - UttarPradesh");
+console.log(searchContactByState("Swatika", "UttarPradesh"));
+
+
+console.log("\nView Contacts By City : Agra \n" );
+console.log(viewContactsByCity("Agra"));
+
+console.log("\nView Contacts By State : UttarPradesh\n" );
+console.log(viewContactsByState("UttarPradesh"));
