@@ -189,6 +189,12 @@ function getCountOfContactsByCity(city){
 function getCountOfContactsByState(state){
     return addressBookArray.filter((contact) => contact.state == state).length;
 }
+function sortAddressBookByName(){
+    addressBookArray.sort((firstPerson, secondPerson) => (firstPerson.firstName).localeCompare(secondPerson.firstName));
+    console.log(addressBookArray);
+}
+console.log("\nContacts In Alphabetical Order");
+sortAddressBookByName();
 
 
 let firstContact = new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com");
