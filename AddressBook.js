@@ -117,15 +117,14 @@ let addressBookArray = new Array();
 
 function contactExists(firstName, lastName) {
     return addressBookArray.some(contact => contact.firstName == firstName && contact.lastName == lastName);
-
 }
+
 function addContact(contact) {
     if (!contactExists(contact.firstName, contact.lastName)) 
         addressBookArray.push(contact);
     else 
         throw "Contact is Present in the Address Book";
 }
-
 
 function editContact(firstName, lastName, property, newValue) {
     if (contactExists(firstName, lastName)) {
@@ -157,32 +156,22 @@ function editContact(firstName, lastName, property, newValue) {
     }
 }
 
-function deleteContact(firstName, lastName){
-    if(contactExists(firstName, lastName)){
+function deleteContact(firstName, lastName) {
+    if (contactExists(firstName, lastName)) {
         addressBookArray = addressBookArray.filter((contact) => contact.firstName != firstName && contact.lastName != lastName);
-    }else{
+    } else {
         console.log("Contact Does Not Exist");
     }
 }
+
 function getCountOfContacts(count) {
     count += 1;
     return count;
 }
 
+let firstContact = new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com");
+let secondContact = new Contact("Riya", "Singh", "#8ac910", "Delhi", "Delhi", "226011", "91 9457889993", "riya@gmail.com");
 
-try {
-    addressBookArray.push(new Contact("Swatika", "Singh","#3ac713", "Lucknow", "UttarPradesh", 226010, "91 7899655666", "swatika@gmail.com"));
-
-} catch (e) {
-    console.error(e);
-}
-
-try {
-    addressBookArray.push(new Contact("Riya", "Singh", "#8ac910", "Delhi", "Delhi", "226011", "91 9457889993", "riya@gmail.com"));
-
-} catch (e) {
-    console.error(e);
-}
 try {
     addressBookArray.push(firstContact);
     addressBookArray.push(secondContact);
@@ -196,9 +185,14 @@ console.log("\nAfter Editing Contact");
 editContact("Swatika", "Singh", "city", "Agra");
 console.log(addressBookArray);
 
+console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
+
 console.log("\nAfter Deleting Contact");
 deleteContact("Riya", "Singh");
-console.log(addressBookArray);console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
+console.log(addressBookArray);
+
+console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
+
 console.log("\nAdding Duplicate Contact");
 try {
     addContact(secondContact);
